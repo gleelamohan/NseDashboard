@@ -222,7 +222,7 @@ namespace NSEDashboard.Business
             List<string> pdData = new List<string>();
 
             string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
-            string SqlString = "SELECT distinct SECTORTYPE1 FROM  SECTOR1";
+            string SqlString = "SELECT distinct SECTORTYPE1 FROM  SECTOR1 ORDER BY SECTORTYPE1 ASC";
 
             using (var conn = new SqlConnection(connectionString))
             {

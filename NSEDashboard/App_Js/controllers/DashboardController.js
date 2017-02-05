@@ -91,8 +91,8 @@
     ];
 
     $scope.param = {
-        name: "%",
-        fullname: "tata",
+        name: "ANCAUTO",
+        fullname: "",
         high52:"",
         low52: "",
         trades: "",
@@ -412,6 +412,8 @@
 
                 $scope.resultset.push(result);
 
+                $scope.bindCandle(response.data.data.lstDate0[0].SYMBOL);
+
                 $scope.loading = false;
             }
             bindSector(response.data.data.sectorInfo);
@@ -420,7 +422,7 @@
         });
     };
 
-    $scope.bindCandle("TATACHEM");
+  
 
     intiilizeCommon();   
 
@@ -432,7 +434,7 @@ app.directive('loading', function () {
     return {
         restrict: 'E',
         replace: true,
-        template: '<div class="loading" style="margin-left:600px;margin-top:100px;"><img src="/assets/plugins/elfinder/img/spinner-mini.gif"/>LOADING...</div>',
+        template: '<div class="loading" style="margin-left:600px;margin-top:100px;"><img src="EQDashboard/assets/plugins/elfinder/img/spinner-mini.gif"/>LOADING...</div>',
         link: function (scope, element, attr) {
             scope.$watch('loading', function (val) {
                 if (val)
