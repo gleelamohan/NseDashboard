@@ -33,7 +33,7 @@ app.controller('Ctrl', function ($scope, $http) {
 
         $http({
             method: "POST",
-            url: 'NSEDashboard1/api/NSEUpload',
+            url: 'EQDashboard/api/NSEUpload',
             data: $scope.Add
         }).then(function successCallback(response) {
 
