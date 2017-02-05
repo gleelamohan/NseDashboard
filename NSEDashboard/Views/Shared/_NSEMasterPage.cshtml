@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+    <!-- Meta information -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Title-->
+    <title>NSE Dashboard</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="~/assets/ico/favicon.ico">
+
+    <!-- CSS Stylesheet-->
+    <link type="text/css" rel="stylesheet" href="~/assets/css/bootstrap/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/assets/css/bootstrap/bootstrap-themes.css" />
+    <link rel="stylesheet" href="~/bower_components/bootswatch/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="~/bower_components/bootswatch/bootswatch.min.css">
+    <link rel="stylesheet" href="~/bower_components/json-tree/json-tree.css">
+    <link rel="stylesheet" href="~/bower_components/nvd3/build/nv.d3.css">
+    <link rel="stylesheet" href="~/bower_components/angular-gridster/dist/angular-gridster.min.css">
+    <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">-->
+
+    <link href="~/bower_components/rainbow.min.css" rel="stylesheet" />
+    <link href="~/bower_components/style.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="pages/gridster/style.css">*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/style.css" />
+
+    <!-- Styleswitch if  you don't chang theme , you can delete -->
+    <link type="text/css" rel="alternate stylesheet" media="screen" title="style1" href="~/assets/css/styleTheme1.css" />
+    <link type="text/css" rel="alternate stylesheet" media="screen" title="style2" href="~/assets/css/styleTheme2.css" />
+    <link type="text/css" rel="alternate stylesheet" media="screen" title="style3" href="~/assets/css/styleTheme3.css" />
+    <link type="text/css" rel="alternate stylesheet" media="screen" title="style4" href="~/assets/css/styleTheme4.css" />
+
+    <style type="text/css">
+
+        a {
+  color: #900;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  position: relative;
+}
+
+      
+a[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  white-space: nowrap;
+  z-index: 20px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+    </style>
+   
+
+</head>
+<body class="leftMenu nav-collapse in">
+    <div id="wrapper" style="margin-top:0px">
+    
+     
+        @RenderBody()
+     
+        <!--
+        //////////////////////////////////////////////////////////////
+        //////////     LEFT NAV MENU     //////////
+        ///////////////////////////////////////////////////////////
+        -->
+        <nav id="menu" data-search="close">
+            <ul>
+                
+                <li>
+                    <span> <i class="icon fa  fa fa-rocket"></i>  @Html.ActionLink("EQ Dashboard", "Index", "DashboardEQ")</span>
+                </li>
+                <li>
+                    <span> <i class="icon fa fa-file-text"></i>  @Html.ActionLink("Upload Files", "Index", "UploadFiles")</span> 
+                </li>
+               
+             
+                
+            </ul>
+        </nav>
+      
+
+    </div>
+    <!-- //wrapper-->
+    <!--
+    ////////////////////////////////////////////////////////////////////////
+    //////////     JAVASCRIPT  LIBRARY     //////////
+    /////////////////////////////////////////////////////////////////////
+    -->
+    <!-- Jquery Library -->
+    <script type="text/javascript" src="~/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery.ui.min.js"></script>
+    @*<script src="lib/highlight.pack.js"></script>*@
+    <script src="~/bower_components/highlight.pack.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/bootstrap/bootstrap.min.js"></script>
+
+
+
+
+   
+
+    <!-- Modernizr Library For HTML5 And CSS3 -->
+    <script type="text/javascript" src="~/assets/js/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/mmenu/jquery.mmenu.js"></script>
+    <script type="text/javascript" src="~/assets/js/styleswitch.js"></script>
+    <!-- Library 10+ Form plugins-->
+    <script type="text/javascript" src="~/assets/plugins/form/form.js"></script>
+    <!-- Datetime plugins -->
+    <script type="text/javascript" src="~/assets/plugins/datetime/datetime.js"></script>
+    <!-- Library Chart-->
+    <script type="text/javascript" src="~/assets/plugins/chart/chart.js"></script>
+    <!-- Library  5+ plugins for bootstrap -->
+    <script type="text/javascript" src="~/assets/plugins/pluginsForBS/pluginsForBS.js"></script>
+    <!-- Library 10+ miscellaneous plugins -->
+    <script type="text/javascript" src="~/assets/plugins/miscellaneous/miscellaneous.js"></script>
+    <!-- Library Themes Customize-->
+    <script type="text/javascript" src="~/assets/js/caplet.custom.js"></script>
+    <!-- Library jqvmap -->
+    <script src="~/assets/plugins/vmap/jquery.vmap.js" type="text/javascript"></script>
+    <script src="~/assets/plugins/vmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+    <script src="~/assets/plugins/vmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+    <!-- Library Owl Carousel  -->
+    <script type="text/javascript" src="~/assets/plugins/owl-carousel/owl.carousel.js"></script>
+    <link href="~/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/assets/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="~/assets/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <!-- Library datable -->
+    <script type="text/javascript" src="~/assets/plugins/datable/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/assets/plugins/datable/dataTables.bootstrap.js"></script>
+
+    <!-- Angular -->
+    @*<script src="~/vendor_components/angular/angular.js"></script>
+    <script src="~/vendor_components/angular-route/angular-route.js"></script>*@
+  
+
+    <script src="~/bower_components/bootswatch/bootswatch.js"></script>
+    <script src="~/bower_components/angular/angular.min.js"></script>
+    <script src="~/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="~/bower_components/d3/d3.min.js"></script>
+    <script src="~/bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    
+    <script src="~/bower_components/json-tree/json-tree.js"></script>
+    <script src="~/bower_components/nvd3/build/nv.d3.js"></script>
+    <script src="~/bower_components/angular-gridster/dist/angular-gridster.min.js"></script>
+    <script src="~/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/App_Js/AppStart.js"></script>
+    <script src="~/App_Js/controllers/HomeController.js"></script>
+    <script src="~/App_Js/controllers/DashboardController.js"></script>
+    
+    <script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('#vmap').vectorMap({
+			map: 'world_en',
+			backgroundColor: '#736086',
+			color: '#ffffff',
+			hoverOpacity: 0.7,
+			selectedColor: '#666666',
+			enableZoom: true,
+			showTooltip: true,
+			values: sample_data,
+			scaleColors: ["#0aa699", "#0bbeaf"],
+			normalizeFunction: 'polynomial'
+		});
+		$("#owl-demo").owlCarousel({
+			autoPlay : 5000,
+			stopOnHover : true,
+			paginationSpeed : 5000,
+			goToFirstSpeed : 3000,
+			singleItem : true,
+			autoHeight : true,
+			transitionStyle:"fade"
+		});
+		$('table[data-provide="data-table"]').dataTable({
+			"iDisplayLength": 5
+		});
+	});
+    </script>
+</body>
+</html>
