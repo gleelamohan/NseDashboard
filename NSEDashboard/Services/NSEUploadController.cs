@@ -13,7 +13,7 @@ using NSEDashboard.Business;
 using NSEDashboard.Models;
 using System.Configuration;
 
-namespace NSEDashboard
+namespace NSEDashboard.Controllers
 {
     public class NSEUploadController : ApiController
     {
