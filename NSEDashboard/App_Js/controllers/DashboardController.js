@@ -27,7 +27,7 @@
                 yAxis: {
                     axisLabel: 'Stock Price',
                     tickFormat: function (d) {
-                        return '$' + d3.format(',.1f')(d);
+                        return 'Rs ' + d3.format(',.1f')(d);
                     },
                     showMaxMin: false
                 },
