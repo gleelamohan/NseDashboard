@@ -17,7 +17,7 @@
                 duration: 100,
 
                 xAxis: {
-                    axisLabel: 'Dates',
+                    axisLabel: '',
                     tickFormat: function (d) {
                         return d3.time.format('%x')(new Date(d));
                     },
@@ -25,7 +25,7 @@
                 },
 
                 yAxis: {
-                    axisLabel: 'Stock Price',
+                    axisLabel: '',
                     tickFormat: function (d) {
                         return 'Rs ' + d3.format(',.1f')(d);
                     },
@@ -67,10 +67,10 @@
             },
             duration: 500,
             xAxis: {
-                axisLabel: 'X Axis'
+                axisLabel: ''
             },
             yAxis: {
-                axisLabel: 'Y Axis',
+                axisLabel: '',
                 axisLabelDistance: -10
             }
         }
