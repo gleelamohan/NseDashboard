@@ -150,11 +150,11 @@
                $scope.data[0].values.push(c);
             }
 
-            var j = 0;
+            var j = 9;
 
             for (var i = response.data.data.length - 1; i >= (response.data.data.length /2); i--) {
 
-                j = j + 1;
+                j = j - 1;
 
                 if (i > 0) {
                     var cc = {
@@ -166,7 +166,7 @@
                     var prevvalue = response.data.data[i - 1].volume;
 
                     cc.label = "D" + (j);
-                    cc.value = parseFloat(((value - prevvalue) / (prevvalue * 0.01))).toFixed(2);
+                    cc.value = parseFloat(((value - prevvalue) / (prevvalue))*100).toFixed(2);
 
                     $scope.data1[0].values.push(cc);
 
@@ -179,7 +179,7 @@
                     var prevvalueQ = response.data.data[i - 1].quantity;
 
                     cc1.label = "D" + (j);
-                    cc1.value = parseFloat(((valueQ - prevvalueQ) / (prevvalueQ * 0.01))).toFixed(2);
+                    cc1.value = parseFloat(((valueQ - prevvalueQ) / (prevvalueQ ))*100).toFixed(2);
 
                     $scope.data2[0].values.push(cc1);
                 }

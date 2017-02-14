@@ -89,7 +89,7 @@ namespace NSEDashboard.Business
             PDData pdData = new PDData();
 
             string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
-            string SqlString = "SELECT (Select Top 20 SUM((CLOSE_PRICE-PREV_CL_PR)/PREV_CL_PR*0.01) from [pdshare] i where i.SYMBOL =[pdshare].[SYMBOL]) Sum_Avg_20, (Select Top(1) EX_DT from bcshare where SYMBOL=[pdshare].[SYMBOL] order by upload_date desc)  ExDate,(Select Top(1) PURPOSE from bcshare where SYMBOL=[pdshare].[SYMBOL] order by upload_date desc) Purpose,* FROM PDSHARE where SYMBOL LIKE '" + Symbol + "' and upload_date = '"+Convert.ToDateTime( dte )+ "' ";
+            string SqlString = "SELECT (Select Top 20 SUM(((CLOSE_PRICE-PREV_CL_PR)/PREV_CL_PR)*100) from [pdshare] i where i.SYMBOL =[pdshare].[SYMBOL]) Sum_Avg_20, (Select Top(1) EX_DT from bcshare where SYMBOL=[pdshare].[SYMBOL] order by upload_date desc)  ExDate,(Select Top(1) PURPOSE from bcshare where SYMBOL=[pdshare].[SYMBOL] order by upload_date desc) Purpose,* FROM PDSHARE where SYMBOL LIKE '" + Symbol + "' and upload_date = '"+Convert.ToDateTime( dte )+ "' ";
 
             using (var conn = new SqlConnection(connectionString))
             {
