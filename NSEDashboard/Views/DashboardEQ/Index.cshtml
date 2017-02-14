@@ -186,7 +186,7 @@
                                     <td style="padding:1px;text-align:left;background-color: rgb(0, 255, 255);" ng-if="item.set=='false'"><button ng-click="bindCandle(item.Name);">{{item.Name}}</button></td>
                                     <td style="padding:1px;background-color:rgb(254, 249, 231)" ng-if="item.set=='false'"><a href="#" title="{{item.Purpose}}">{{item.Ex_date}}</a></td>
                                     <td style="padding:1px;background-color:rgb(209, 242, 235);" ng-if="item.set=='false'">{{item.top20}}</td>
-                                    <td style="padding:1px;background-color: rgb(215, 30, 77);color:white;" ng-if="item.set=='false'">{{item.d1}}</td>
+                                    <td style="padding:1px;background-color: rgb(0, 255, 128);color:black;" ng-if="item.set=='false'">{{item.d1}}</td>
 
                                     <td style="padding:1px;background-color: rgb(196, 244, 243); color:green;" ng-if="item.set=='false' && item.d2>0">{{item.d2}}</td>
                                     <td style="padding:1px;background-color: rgb(196, 244, 243);color:red;" ng-if="item.set=='false' && item.d2<=0">{{item.d2}}</td>
@@ -225,7 +225,7 @@
                                     <td style="padding:1px;text-align:left;background-color: rgb(255, 255, 128);" ng-if="item.set=='true'">{{item.Name}}</td>
                                     <td style="padding:1px;background-color:rgb(254, 249, 231)" ng-if="item.set=='true'"></td>
                                     <td style="padding:1px;background-color:rgb(214, 219, 223);" ng-if="item.set=='true'"></td>
-                                    <td style="padding:1px;background-color: rgb(0, 255, 128);color:black;" ng-if="item.set=='true'">{{item.d1}}</td>
+                                    <td style="padding:1px;background-color: rgb(215, 30, 77);color:white;" ng-if="item.set=='true'">{{item.d1}}</td>
 
                                     <td style="padding:1px;background-color: rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d2}}</td>
                                     <td style="padding:1px;background-color: rgb(204, 226, 158);" ng-if="item.set=='true'">{{item.d3}}</td>
