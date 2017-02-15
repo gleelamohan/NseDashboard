@@ -162,42 +162,42 @@ namespace NSEDashboard.Business
 
             if (data.high52 != null && data.high52 != "")
             {
-                string queryString4 = " and ((HI_52_WK -CLOSE_PRICE)/HI_52_WK*100) >='" + data.high52 + "%'";
+                string queryString4 = " and (((HI_52_WK -CLOSE_PRICE)/HI_52_WK)*100) >='" + data.high52 + "'";
                 QueryString = QueryString + queryString4;
             }
 
             if (data.low52 != null && data.low52 != "")
             {
                 
-                string queryString5 = " and ((CLOSE_PRICE-LO_52_WK)/LO_52_WK*100) <='" + data.low52 + "%'";
+                string queryString5 = " and ((CLOSE_PRICE-LO_52_WK)/LO_52_WK*100) <='" + data.low52 + "'";
                 QueryString = QueryString + queryString5;
             }
             if (data.trades != null && data.trades != "")
             {
-                String queryString6 = " and TRADES>='" + data.trades + "%'";
+                String queryString6 = " and TRADES>='" + data.trades + "'";
                 QueryString = QueryString + queryString6;
             }
             if (data.gainer_losser != "" && data.gainer_losser != null)
             {
-                string queryString8 = " and HI_52_WK-LO_52_WK>='" + data.gainer_losser + "%'";
+                string queryString8 = " and HI_52_WK-LO_52_WK>='" + data.gainer_losser + "'";
                 QueryString = QueryString + queryString8;
             }
             if (data.gainRs != "" && data.gainer_losser != null)
             {
-                string queryString9 = " and HI_52_WK/LO_52_WK>='" + data.gainRs + "%'";
+                string queryString9 = " and HI_52_WK/LO_52_WK>='" + data.gainRs + "'";
                 QueryString = QueryString + queryString9;
             }
 
             int gain = 0;
             if (data.gainPer != null && data.gainPer != "" && data.gainPer.StartsWith("-"))
             {
-                String queryString7 = " and (CLOSE_PRICE-PREV_CL_PR)/(CLOSE_PRICE*0.01)<='" + data.gainPer + "%' order by 2";
+                String queryString7 = " and (CLOSE_PRICE-PREV_CL_PR)/(CLOSE_PRICE*0.01)<='" + data.gainPer + "' order by 2";
                 QueryString = QueryString + queryString7;
                 gain = 1;
             }
             if (data.gainPer != null && data.gainPer != "" && gain == 0)
             {
-                string queryString7 = " and (CLOSE_PRICE-PREV_CL_PR)/(CLOSE_PRICE*0.01)>='" + data.gainPer + "%' order by 2 desc";
+                string queryString7 = " and (CLOSE_PRICE-PREV_CL_PR)/(CLOSE_PRICE*0.01)>='" + data.gainPer + "' order by 2 desc";
                 QueryString = QueryString + queryString7;
             }
 
