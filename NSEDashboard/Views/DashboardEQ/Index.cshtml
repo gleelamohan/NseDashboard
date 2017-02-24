@@ -156,18 +156,18 @@
                             <thead>
                                 <tr>
 
-                                    <th colspan="4">Sector</th>
-                                    <th colspan="3">{{lastdate[0]}}</th>
+                                    <th colspan="3"  style="width:22%">Sector</th>
+                                    <th colspan="3" style="width:14%;text-align:center">{{lastdate[0]}}</th>
 
-                                    <th colspan="3">{{lastdate[1]}}</th>
+                                    <th colspan="3" style="width:15%;text-align:center;">{{lastdate[1]}}</th>
 
-                                    <th colspan="3">{{lastdate[2]}}</th>
+                                    <th colspan="3" style="width:13%;text-align:center;">{{lastdate[2]}}</th>
 
-                                    <th colspan="3">{{lastdate[3]}}</th>
+                                    <th colspan="3" style="width:14%;text-align:center;">{{lastdate[3]}}</th>
 
-                                    <th colspan="3">{{lastdate[4]}}</th>
-                                    <th ng-title="{{param.cDate1}}">D1</th>
-                                    <th ng-title="{{param.cDate2}}">D2</th>
+                                    <th colspan="3" style="width:13%;text-align:center;">{{lastdate[4]}}</th>
+                                    <th ng-title="{{param.cDate1}}" style="text-align:center">D1</th>
+                                    <th ng-title="{{param.cDate2}}" style="text-align:center">D2</th>
 
                                 </tr>
                             </thead>
@@ -185,34 +185,34 @@
 
                                     <td style="padding:1px;text-align:left;background-color: rgb(0, 255, 255);" ng-if="item.set=='false'"><button ng-click="bindCandle(item.Name);">{{item.Name}}</button></td>
                                     <td style="padding:1px;background-color:rgb(254, 249, 231)" ng-if="item.set=='false'"><a href="#" title="{{item.Purpose}}">{{item.Ex_date}}</a></td>
-                                    <td style="padding:1px;background-color:rgb(209, 242, 235);" ng-if="item.set=='false'">{{item.top20}}</td>
-                                    <td style="padding:1px;background-color: rgb(0, 255, 128);color:black;" ng-if="item.set=='false'">{{item.d1}}</td>
+                                    <td style="padding:1px;background-color:rgb(209, 242, 235);" ng-if="item.set=='false'" >{{item.top20}}</td>
+                                    <td style="padding:1px;background-color: rgb(0, 255, 128);color:black;border-right:3px solid #898989;" ng-if="item.set=='false'">{{item.d1}}</td>
 
                                     <td style="padding:1px;background-color: rgb(196, 244, 243); color:green;" ng-if="item.set=='false' && item.d2>0">{{item.d2}}</td>
                                     <td style="padding:1px;background-color: rgb(196, 244, 243);color:red;" ng-if="item.set=='false' && item.d2<=0">{{item.d2}}</td>
                                     <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='false'">{{item.d3}}</td>
-                                    <td style="padding:1px;background-color: rgb(233, 231, 167);" ng-if="item.set=='false'">{{item.d4}}</td>
+                                    <td style="padding:1px;background-color: rgb(233, 231, 167);border-right:3px solid #898989;" ng-if="item.set=='false'">{{item.d4}}</td>
 
                                     <td style="padding:1px;background-color: rgb(196, 244, 243); color:green;" ng-if="item.set=='false' && item.d5>0">{{item.d5}}</td>
                                     <td style="padding:1px;background-color: rgb(196, 244, 243);color:red;" ng-if="item.set=='false' && item.d5<=0">{{item.d5}}</td>
                                     <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='false'">{{item.d6}}</td>
-                                    <td style="padding:1px;background-color: rgb(233, 231, 167);" ng-if="item.set=='false'">{{item.d7}}</td>
+                                    <td style="padding:1px;background-color: rgb(233, 231, 167);border-right:3px solid #898989;" ng-if="item.set=='false'">{{item.d7}}</td>
 
                                     <td style="padding:1px;background-color: rgb(196, 244, 243); color:green;" ng-if="item.set=='false' && item.d8>0">{{item.d8}}</td>
                                     <td style="padding:1px;background-color: rgb(196, 244, 243);color:red;" ng-if="item.set=='false' && item.d8<=0">{{item.d8}}</td>
                                     <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='false'">{{item.d9}}</td>
-                                    <td style="padding:1px;background-color: rgb(233, 231, 167);" ng-if="item.set=='false'">{{item.d10}}</td>
+                                    <td style="padding:1px;background-color: rgb(233, 231, 167);border-right:3px solid #898989;" ng-if="item.set=='false'">{{item.d10}}</td>
 
                                     <td style="padding:1px;background-color: rgb(196, 244, 243); color:green;" ng-if="item.set=='false' && item.d11>0">{{item.d11}}</td>
                                     <td style="padding:1px;background-color: rgb(196, 244, 243);color:red;" ng-if="item.set=='false' && item.d11<=0">{{item.d11}}</td>
                                     <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='false'">{{item.d12}}</td>
-                                    <td style="padding:1px;background-color: rgb(233, 231, 167);" ng-if="item.set=='false'">{{item.d13}}</td>
+                                    <td style="padding:1px;background-color: rgb(233, 231, 167);border-right:3px solid #898989;" ng-if="item.set=='false'">{{item.d13}}</td>
 
 
                                     <td style="padding:1px;background-color: rgb(196, 244, 243); color:green;" ng-if="item.set=='false' && item.d14>0">{{item.d14}}</td>
                                     <td style="padding:1px;background-color: rgb(196, 244, 243);color:red;" ng-if="item.set=='false' && item.d14<=0">{{item.d14}}</td>
                                     <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='false'">{{item.d15}}</td>
-                                    <td style="padding:1px;background-color: rgb(233, 231, 167);" ng-if="item.set=='false'">{{item.d16}}</td>
+                                    <td style="padding:1px;background-color: rgb(233, 231, 167);border-right:3px solid #898989;" ng-if="item.set=='false'">{{item.d16}}</td>
 
                                     <td style="padding:1px;background-color: rgb(196, 244, 243); color:green;" ng-if="item.set=='false' && item.d17>0">{{item.d17}}</td>
                                     <td style="padding:1px;background-color: rgb(196, 244, 243);color:red;" ng-if="item.set=='false' && item.d17<=0">{{item.d17}}</td>
@@ -225,27 +225,27 @@
                                     <td style="padding:1px;text-align:left;background-color: rgb(255, 255, 128);" ng-if="item.set=='true'">{{item.Name}}</td>
                                     <td style="padding:1px;background-color:rgb(254, 249, 231)" ng-if="item.set=='true'"></td>
                                     <td style="padding:1px;background-color:rgb(214, 219, 223);" ng-if="item.set=='true'"></td>
-                                    <td style="padding:1px;background-color: rgb(215, 30, 77);color:white;" ng-if="item.set=='true'">{{item.d1}}</td>
+                                    <td style="padding:1px;background-color: rgb(215, 30, 77);color:white;border-right:3px solid #898989;" ng-if="item.set=='true'">{{item.d1}}</td>
 
                                     <td style="padding:1px;background-color: rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d2}}</td>
                                     <td style="padding:1px;background-color: rgb(204, 226, 158);" ng-if="item.set=='true'">{{item.d3}}</td>
-                                    <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='true'">{{item.d4}}</td>
+                                    <td style="padding:1px;background-color: rgb(188, 192, 245);border-right:3px solid #898989;" ng-if="item.set=='true'">{{item.d4}}</td>
 
                                     <td style="padding:1px;background-color: rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d5}}</td>
                                     <td style="padding:1px;background-color: rgb(204, 226, 158);" ng-if="item.set=='true'">{{item.d6}}</td>
-                                    <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='true'">{{item.d7}}</td>
+                                    <td style="padding:1px;background-color: rgb(188, 192, 245);border-right:3px solid #898989;" ng-if="item.set=='true'">{{item.d7}}</td>
 
                                     <td style="padding:1px;background-color: rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d8}}</td>
                                     <td style="padding:1px;background-color: rgb(204, 226, 158);" ng-if="item.set=='true'">{{item.d9}}</td>
-                                    <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='true'">{{item.d10}}</td>
+                                    <td style="padding:1px;background-color: rgb(188, 192, 245);border-right:3px solid #898989;" ng-if="item.set=='true'">{{item.d10}}</td>
 
                                     <td style="padding:1px;background-color: rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d11}}</td>
                                     <td style="padding:1px;background-color: rgb(204, 226, 158);" ng-if="item.set=='true'">{{item.d12}}</td>
-                                    <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='true'">{{item.d13}}</td>
+                                    <td style="padding:1px;background-color: rgb(188, 192, 245);border-right:3px solid #898989;" ng-if="item.set=='true'">{{item.d13}}</td>
 
                                     <td style="padding:1px;background-color: rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d14}}</td>
                                     <td style="padding:1px;background-color: rgb(204, 226, 158);" ng-if="item.set=='true'">{{item.d15}}</td>
-                                    <td style="padding:1px;background-color: rgb(188, 192, 245);" ng-if="item.set=='true'">{{item.d16}}</td>
+                                    <td style="padding:1px;background-color: rgb(188, 192, 245);border-right:3px solid #898989;" ng-if="item.set=='true'">{{item.d16}}</td>
 
                                     <td style="padding:1px;background-color:rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d17}}</td>
                                     <td style="padding:1px;background-color:rgb(242, 183, 247);" ng-if="item.set=='true'">{{item.d18}}</td>
