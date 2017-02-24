@@ -342,7 +342,7 @@ namespace NSEDashboard.Business
             List<Candalchart> pdData = new List<Candalchart>();
 
             string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
-            string SqlString = "SELECT TOP 20  [SYMBOL], [OPEN_PRICE], [HIGH_PRICE]  ,[LOW_PRICE] ,[CLOSE_PRICE] ,[NET_TRDVAL] ,[NET_TRDQTY] ,[TRADES] ,[HI_52_WK] ,[LO_52_WK] ,[UPLOAD_DATE]  FROM[dbo].[pdshare] where SYMBOL = '"+Symbol +"'";
+            string SqlString = "select * from (SELECT TOP 20  [SYMBOL], [OPEN_PRICE], [HIGH_PRICE]  ,[LOW_PRICE] ,[CLOSE_PRICE] ,[NET_TRDVAL] ,[NET_TRDQTY] ,[TRADES] ,[HI_52_WK] ,[LO_52_WK] ,[UPLOAD_DATE]  FROM[dbo].[pdshare] where SYMBOL = '" + Symbol + "' order by UPLOAD_DATE desc) T order by UPLOAD_DATE";
 
             using (var conn = new SqlConnection(connectionString))
             {
