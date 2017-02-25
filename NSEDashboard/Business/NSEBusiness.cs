@@ -292,6 +292,29 @@ namespace NSEDashboard.Business
         }
 
 
+        public void InsertFOData(List<UploadData> value)
+        {
+            DataTable csvData = GetDataTableFromCSVFile(value[0].uploadPath);
+
+            var lastRow = csvData.Rows[csvData.Rows.Count - 1];
+            csvData.Rows.Remove(lastRow);
+            string connectionString = "Server=.;DataBase=eqsharedb;Integrated Security=SSPI";
+            using (var conn = new SqlConnection(connectionString))
+            using (var command = new SqlCommand("foshareupdate", conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+
+                command.Parameters.Add(new SqlParameter("@myTableType", csvData));
+                command.Parameters.Add(new SqlParameter("@dtDate", Convert.ToDateTime(value[0].uploadDate)));
+                conn.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
         private static DataTable GetDataTableFromCSVFile(string csv_file_path)
         {
             DataTable csvData = new DataTable();

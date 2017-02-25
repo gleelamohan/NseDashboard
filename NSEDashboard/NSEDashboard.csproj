@@ -209,6 +209,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\NSEBusiness.cs" />
+    <Compile Include="Controllers\DashboardFOController.cs" />
     <Compile Include="Models\Candalchart.cs" />
     <Compile Include="Services\GetChartController.cs" />
     <Compile Include="Controllers\NSEClientController.cs" />
@@ -1419,6 +1420,7 @@
     <Content Include="Views\NSEClient\Index.cshtml" />
     <Content Include="Views\UploadFiles\Index.cshtml" />
     <Content Include="Views\DashboardEQ\Index.cshtml" />
+    <Content Include="Views\DashboardFO\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

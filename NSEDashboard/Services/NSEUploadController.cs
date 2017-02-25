@@ -62,6 +62,7 @@ namespace NSEDashboard.Controllers
             {
                 case "pd": BAL.InsertPDData(value); break;
                 case "bc": BAL.InsertBCData(value);break;
+                case "fo": BAL.InsertFOData(value); break;
             }
 
           
