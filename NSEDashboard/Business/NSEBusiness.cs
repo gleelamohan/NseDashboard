@@ -406,7 +406,135 @@ namespace NSEDashboard.Business
 
         #region FO Contoller
 
+        public FOModelData GetFOData()
+        {
+            FOModelData lstModel = new FOModelData();
+            lstModel.lastFiveDates = GetLastFOFiveDates();
+            LstDates = lstModel.lastFiveDates;
 
+            if (LstDates != null && LstDates.Count > 0)
+            {
+                var lstSymbol = getFOData("NIFTY", LstDates[0]);
+
+                lstModel.lstDate0 = new List<FOData>();
+                lstModel.lstDate1 = new List<FOData>();
+                lstModel.lstDate2 = new List<FOData>();
+                lstModel.lstDate3 = new List<FOData>();
+                lstModel.lstDate4 = new List<FOData>();
+                lstModel.lstDate5 = new List<FOData>();
+            
+                foreach (DataRow row in lstSymbol.Rows)
+                {
+                    lstModel.lstDate1.Add(getFODate(row["SYMBOL"].ToString(), LstDates[0],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
+                    lstModel.lstDate2.Add(getFODate(row["SYMBOL"].ToString(), LstDates[1],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
+                    lstModel.lstDate3.Add(getFODate(row["SYMBOL"].ToString(), LstDates[2],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
+                    lstModel.lstDate4.Add(getFODate(row["SYMBOL"].ToString(), LstDates[3],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
+                    lstModel.lstDate5.Add(getFODate(row["SYMBOL"].ToString(), LstDates[4],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
+                    lstModel.lstDate0.Add(getFODate(row["SYMBOL"].ToString(), LstDates[5],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
+                    
+                }               
+            }
+
+            return lstModel;
+        }
+
+        private FOData getFODate(string Symbol, string dte,string sp, string opt)
+        {
+            FOData FOData = new FOData();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
+            string SqlString = "SELECT * FROM FOSHARE where SYMBOL LIKE '" + Symbol + "' and OPT_TYPE='"+opt+"' and STR_PRICE='" + sp+"' and upload_date = '" + Convert.ToDateTime(dte) + "' ";
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter sda = new SqlDataAdapter(SqlString, conn);
+                DataTable dt = new DataTable();
+                try
+                {
+                    conn.Open();
+                    sda.Fill(dt);
+                }
+                catch (SqlException se)
+                {
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+                   
+                    FOData.EXP_DATE = row["EXP_DATE"].ToString();
+                    FOData.SYMBOL = row["SYMBOL"].ToString();
+                    FOData.OPT_TYPE = row["OPT_TYPE"].ToString();
+                    FOData.INSTRUMENT = row["INSTRUMENT"].ToString();
+                    FOData.STR_PRICE =Convert.ToDouble( row["STR_PRICE"].ToString());
+                    FOData.OPEN_PRICE = Convert.ToDouble(row["OPEN_PRICE"].ToString());
+                    FOData.HI_PRICE = Convert.ToDouble(row["HI_PRICE"].ToString());
+                    FOData.LO_PRICE = Convert.ToDouble(row["LO_PRICE"].ToString());
+                    FOData.CLOSE_PRICE = Convert.ToDouble(row["CLOSE_PRICE"].ToString());
+                    FOData.OPEN_Int = Convert.ToDouble(row["OPEN_Int*"].ToString());
+                    FOData.TRD_QTY = Convert.ToDouble(row["TRD_QTY"].ToString());
+                    FOData.NO_OF_CONT = Convert.ToDouble(row["NO_OF_CONT"].ToString());
+                    FOData.NO_OF_TRADE = Convert.ToDouble(row["NO_OF_TRADE"].ToString());
+                    FOData.PR_VA = Convert.ToDouble(row["PR_VAL"].ToString());                
+
+
+                }
+            }
+
+            return FOData;
+        }
+
+        private DataTable getFOData(string Symbol,string uploaddate)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
+
+            string SqlString = "SELECT DISTINCT SYMBOL,STR_PRICE,OPT_TYPE FROM FOSHARE WHERE SYMBOL='"+ Symbol + "' and  upload_date='" + uploaddate + "'";
+
+            
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter sda = new SqlDataAdapter(SqlString, conn);
+                DataTable dt = new DataTable();
+                try
+                {
+                    conn.Open();
+                    sda.Fill(dt);
+                }
+                catch (SqlException se)
+                {
+                }
+                return dt;
+            }
+        }
+        public List<string> GetLastFOFiveDates()
+        {
+            List<string> pdData = new List<string>();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
+            string SqlString = "SELECT distinct TOP 6 UPLOAD_DATE FROM [eqsharedb].[dbo].[foshare] order by UPLOAD_DATE desc";
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter sda = new SqlDataAdapter(SqlString, conn);
+                DataTable dt = new DataTable();
+                try
+                {
+                    conn.Open();
+                    sda.Fill(dt);
+                }
+                catch (SqlException se)
+                {
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    pdData.Add(DateTime.Parse(row["UPLOAD_DATE"].ToString()).ToShortDateString());
+
+                }
+            }
+
+            return pdData;
+        }
         #endregion
 
     }

@@ -412,7 +412,7 @@ app.directive('loading', function () {
     return {
         restrict: 'E',
         replace: true,
-        template: '<div class="loading" style="margin-left:600px;margin-top:100px;"><img src="EQDashboard/assets/plugins/elfinder/img/spinner-mini.gif"/>LOADING...</div>',
+        template: '<div class="loading" style="margin-left:600px;margin-top:100px;"><img src="~/EQDashboard/assets/plugins/elfinder/img/spinner-mini.gif"/>LOADING...</div>',
         link: function (scope, element, attr) {
             scope.$watch('loading', function (val) {
                 if (val)

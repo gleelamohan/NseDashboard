@@ -1,18 +1,23 @@
 ﻿using System;
+using System.Data.SqlClient;
+using System.Data;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using NSEDashboard.Business;
+using NSEDashboard.Models;
+using System.Configuration;
 
 namespace NSEDashboard.Controllers
 {
     public class NSEFOController : ApiController
     {
+        NSEBusiness BAL = new NSEBusiness();
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public IHttpActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var data = BAL.GetFOData();
+            return Ok(new { data });
         }
 
         // GET api/<controller>/5

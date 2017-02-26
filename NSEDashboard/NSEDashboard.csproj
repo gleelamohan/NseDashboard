@@ -211,6 +211,8 @@
     <Compile Include="Business\NSEBusiness.cs" />
     <Compile Include="Controllers\DashboardFOController.cs" />
     <Compile Include="Models\Candalchart.cs" />
+    <Compile Include="Models\FOData.cs" />
+    <Compile Include="Models\FOModelData.cs" />
     <Compile Include="Services\GetChartController.cs" />
     <Compile Include="Controllers\NSEClientController.cs" />
     <Compile Include="Controllers\NSEDashboardController.cs" />
@@ -231,6 +233,7 @@
   <ItemGroup>
     <Content Include="App_Js\AppStart.js" />
     <Content Include="App_Js\controllers\DashboardController.js" />
+    <Content Include="App_Js\controllers\FODashboardController.js" />
     <Content Include="App_Js\controllers\HomeController.js" />
     <Content Include="assets\css\animation.css" />
     <Content Include="assets\css\bootstrap-themes.css" />
