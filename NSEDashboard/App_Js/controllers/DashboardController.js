@@ -204,6 +204,11 @@
         $scope.resultset = [];
         //inputparams.push(params);
 
+        if ($scope.param.name === null || $scope.param.name==='')
+        {
+            $scope.param.name = '%';
+        }
+
         var config = {
             params: $scope.param
         }
