@@ -338,7 +338,7 @@
                   
                 }
 
-                result.Name = response.data.data.lstDate1[j].SECURITY;
+                result.Name = response.data.data.lstDate1[j].SECURITY.substring(0, 15);
                 result.d1 = response.data.data.lstDate1[j].LO_52_WK;
 
                 result.d2 = response.data.data.lstDate1[j].CLOSE_PRICE;
