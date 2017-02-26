@@ -224,6 +224,7 @@
     <Compile Include="Models\PDInputModel.cs" />
     <Compile Include="Models\PDModelData.cs" />
     <Compile Include="Models\UploadData.cs" />
+    <Compile Include="Services\NSEFOController.cs" />
     <Compile Include="Services\NSEUploadController.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

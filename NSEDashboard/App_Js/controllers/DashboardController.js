@@ -251,29 +251,7 @@
                 }
 
 
-                     var net_td1=0;
-                     var net_td2=0;
-                     var net_td3=0;
-                     var net_td4=0;
-                     var net_td5=0;
-                     var net_td6 = 0;
-
-                     net_td1 = (response.data.data.lstDate1[j].NET_TRDQTY + 2 - response.data.data.lstDate2[j].NET_TRDQTY)/ response.data.data.lstDate2[j].NET_TRDQTY * 0.01;
-                     net_td2 = (response.data.data.lstDate2[j].NET_TRDQTY + 2 - response.data.data.lstDate3[j].NET_TRDQTY)/ response.data.data.lstDate3[j].NET_TRDQTY * 0.01;
-                     net_td3 = (response.data.data.lstDate3[j].NET_TRDQTY + 2 - response.data.data.lstDate4[j].NET_TRDQTY)/ response.data.data.lstDate4[j].NET_TRDQTY * 0.01;
-                     net_td4 = (response.data.data.lstDate4[j].NET_TRDQTY + 2 - response.data.data.lstDate5[j].NET_TRDQTY)/ response.data.data.lstDate5[j].NET_TRDQTY * 0.01;
-                     net_td5 = 0;
-                     net_td6 = 0;
-        
-
-                     net_td1 = parseFloat((net_td1 * 100) / 100).toFixed(2);
-                     net_td2 = parseFloat((net_td2 * 100) / 100).toFixed(2);
-                     net_td3 = parseFloat((net_td3 * 100) / 100).toFixed(2);
-                     net_td4 = parseFloat((net_td4 * 100) / 100).toFixed(2);
-                     net_td5 = parseFloat((net_td5 * 100) / 100).toFixed(2);
-                     net_td6 = parseFloat((net_td6 * 100) / 100).toFixed(2);
-
-             
+                             
 
                 result.Name = response.data.data.lstDate1[j].SYMBOL;
                 result.d1 = response.data.data.lstDate1[j].HI_52_WK;
@@ -338,7 +316,7 @@
                   
                 }
 
-                result.Name = response.data.data.lstDate1[j].SECURITY.substring(0, 15);
+                result.Name = response.data.data.lstDate1[j].SECURITY.substring(0, 8);
                 result.d1 = response.data.data.lstDate1[j].LO_52_WK;
 
                 result.d2 = response.data.data.lstDate1[j].CLOSE_PRICE;
