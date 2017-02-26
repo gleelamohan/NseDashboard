@@ -61,7 +61,7 @@
             },
             x: function (d) { return d.label; },
             y: function (d) { return d.value; },
-            showValues: true,
+            showValues: false,
             valueFormat: function (d) {
                 return d3.format(',.2f')(d);
             },
@@ -148,42 +148,63 @@
                c.volume = response.data.data[i].volume;
 
                $scope.data[0].values.push(c);
+
+               var cc = {
+                   "label": "",
+                   "value": 0,
+               };
+
+               cc.label =  (i+1);
+               cc.value = parseFloat(response.data.data[i].volume).toFixed(2);
+
+               $scope.data1[0].values.push(cc);
+
+
+               var cc1 = {
+                   "label": "",
+                   "value": 0,
+               }
+
+               cc1.label =  (i+1);
+               cc1.value = parseFloat(response.data.data[i].quantity).toFixed(2);
+
+               $scope.data2[0].values.push(cc1);
             }
 
-            var j = 9;
+            //var j = 9;
 
-            for (var i = response.data.data.length - 1; i >= (response.data.data.length /2); i--) {
+            //for (var i = response.data.data.length - 1; i >= (response.data.data.length /2); i--) {
 
-                j = j - 1;
+            //    j = j - 1;
 
-                if (i > 0) {
-                    var cc = {
-                        "label": "",
-                        "value": 0,
-                    };
+            //    if (i > 0) {
+            //        var cc = {
+            //            "label": "",
+            //            "value": 0,
+            //        };
 
-                    var value = response.data.data[i].volume;
-                    var prevvalue = response.data.data[i - 1].volume;
+            //        var value = response.data.data[i].volume;
+            //        var prevvalue = response.data.data[i - 1].volume;
 
-                    cc.label = "D" + (j);
-                    cc.value = parseFloat(((value - prevvalue) / (prevvalue))*100).toFixed(2);
+            //        cc.label = "D" + (j);
+            //        cc.value = parseFloat(((value - prevvalue) / (prevvalue))*100).toFixed(2);
 
-                    $scope.data1[0].values.push(cc);
+            //        $scope.data1[0].values.push(cc);
 
-                    var cc1 = {
-                        "label": "",
-                        "value": 0,
-                    }
+            //        var cc1 = {
+            //            "label": "",
+            //            "value": 0,
+            //        }
 
-                    var valueQ = response.data.data[i].quantity;
-                    var prevvalueQ = response.data.data[i - 1].quantity;
+            //        var valueQ = response.data.data[i].quantity;
+            //        var prevvalueQ = response.data.data[i - 1].quantity;
 
-                    cc1.label = "D" + (j);
-                    cc1.value = parseFloat(((valueQ - prevvalueQ) / (prevvalueQ ))*100).toFixed(2);
+            //        cc1.label = "D" + (j);
+            //        cc1.value = parseFloat(((valueQ - prevvalueQ) / (prevvalueQ ))*100).toFixed(2);
 
-                    $scope.data2[0].values.push(cc1);
-                }
-            }
+            //        $scope.data2[0].values.push(cc1);
+            //    }
+            //}
 
 
             $scope.loading = false;
