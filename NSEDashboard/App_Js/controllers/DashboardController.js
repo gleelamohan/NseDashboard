@@ -116,7 +116,7 @@
 
         $scope.loading = true;
 
-        $http.get('EQDashboard/api/GetChart?symbol=' + sym
+        $http.get('http://localhost/EQDashboard/api/GetChart?symbol=' + sym
         ).then(function successCallback(response) {
 
         
@@ -210,7 +210,7 @@
 
         $scope.loading = true;
 
-        $http.get('EQDashboard/api/NSEUpload',
+        $http.get('http://localhost/EQDashboard/api/NSEUpload',
           config
 
         ).then(function successCallback(response) {
