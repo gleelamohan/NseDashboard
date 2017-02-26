@@ -209,6 +209,14 @@
 
             $scope.loading = false;
             candleotions();
+        }, function errorCallback(response) {
+
+            // Handle error here
+            $scope.loading = false;
+
+        }).catch(function (data) {
+            // Handle error here
+            $scope.loading = false;
         });
 
     };
@@ -242,142 +250,153 @@
         ).then(function successCallback(response) {
 
             $scope.lastdate = response.data.data.lastFiveDates;
+            if (response.data.data.lstDate1.length > 0) {
+                for (var j = 0; j < response.data.data.lstDate1.length; j++) {
 
-            for (var j = 0; j < response.data.data.lstDate1.length; j++)
+                    var result = {
+                        Name: "",
+                        Ex_date: "",
+                        Purpose: "",
+                        top20: "",
+                        d1: "",
+                        d2: "",
+                        d3: "",
+                        d4: "",
+                        d5: "",
+                        d6: "",
+                        d7: "",
+                        d8: "",
+                        d9: "",
+                        d10: "",
+                        d11: "",
+                        d12: "",
+                        d13: "",
+                        d14: "",
+                        d15: "",
+                        d16: "",
+                        d17: "",
+                        d18: "",
+                        d19: "",
+                        d20: "",
+                        d21: "",
+                        d22: "",
+                        set: 'false'
+                    }
+
+
+
+
+                    result.Name = response.data.data.lstDate1[j].SYMBOL;
+                    result.d1 = response.data.data.lstDate1[j].HI_52_WK;
+                    result.Ex_date = response.data.data.lstDate1[j].Ex_date;
+                    result.Purpose = response.data.data.lstDate1[j].Purpose;
+                    result.top20 = parseFloat(response.data.data.lstDate1[j].Top_Avg_20).toFixed(4);
+                    result.d2 = parseFloat((response.data.data.lstDate1[j].CLOSE_PRICE - response.data.data.lstDate1[j].PREV_CLOSE) / (response.data.data.lstDate1[j].PREV_CLOSE * 0.01)).toFixed(2);
+                    result.d3 = parseFloat((response.data.data.lstDate1[j].NET_TRDVAL - response.data.data.lstDate2[j].NET_TRDVAL) / (response.data.data.lstDate2[j].NET_TRDVAL * 0.01)).toFixed(2);
+                    result.d4 = parseFloat((response.data.data.lstDate1[j].TRADES - response.data.data.lstDate2[j].TRADES) / (response.data.data.lstDate2[j].TRADES * 0.01)).toFixed(2);
+
+
+                    result.d5 = parseFloat((response.data.data.lstDate2[j].CLOSE_PRICE - response.data.data.lstDate2[j].PREV_CLOSE) / (response.data.data.lstDate2[j].PREV_CLOSE * 0.01)).toFixed(2);
+                    result.d6 = parseFloat((response.data.data.lstDate2[j].NET_TRDVAL - response.data.data.lstDate3[j].NET_TRDVAL) / (response.data.data.lstDate3[j].NET_TRDVAL * 0.01)).toFixed(2);
+                    result.d7 = parseFloat((response.data.data.lstDate2[j].TRADES - response.data.data.lstDate3[j].TRADES) / (response.data.data.lstDate3[j].TRADES * 0.01)).toFixed(2);
+
+                    result.d8 = parseFloat((response.data.data.lstDate3[j].CLOSE_PRICE - response.data.data.lstDate3[j].PREV_CLOSE) / (response.data.data.lstDate3[j].PREV_CLOSE * 0.01)).toFixed(2);
+                    result.d9 = parseFloat((response.data.data.lstDate3[j].NET_TRDVAL - response.data.data.lstDate4[j].NET_TRDVAL) / (response.data.data.lstDate4[j].NET_TRDVAL * 0.01)).toFixed(2);
+                    result.d10 = parseFloat((response.data.data.lstDate3[j].TRADES - response.data.data.lstDate4[j].TRADES) / (response.data.data.lstDate4[j].TRADES * 0.01)).toFixed(2);
+
+                    result.d11 = parseFloat((response.data.data.lstDate4[j].CLOSE_PRICE - response.data.data.lstDate4[j].PREV_CLOSE) / (response.data.data.lstDate4[j].PREV_CLOSE * 0.01)).toFixed(2);
+                    result.d12 = parseFloat((response.data.data.lstDate4[j].NET_TRDVAL - response.data.data.lstDate5[j].NET_TRDVAL) / (response.data.data.lstDate5[j].NET_TRDVAL * 0.01)).toFixed(2);
+                    result.d13 = parseFloat((response.data.data.lstDate4[j].TRADES - response.data.data.lstDate5[j].TRADES) / (response.data.data.lstDate5[j].TRADES * 0.01)).toFixed(2);
+
+                    result.d14 = parseFloat((response.data.data.lstDate5[j].CLOSE_PRICE - response.data.data.lstDate5[j].PREV_CLOSE) / (response.data.data.lstDate5[j].PREV_CLOSE * 0.01)).toFixed(2);
+                    result.d15 = parseFloat((response.data.data.lstDate5[j].NET_TRDVAL - response.data.data.lstDate0[j].NET_TRDVAL) / (response.data.data.lstDate0[j].NET_TRDVAL * 0.01)).toFixed(2);
+                    result.d16 = parseFloat((response.data.data.lstDate5[j].TRADES - response.data.data.lstDate0[j].TRADES) / (response.data.data.lstDate0[j].TRADES * 0.01)).toFixed(2);
+
+                    result.d17 = parseFloat((response.data.data.lstDate6[j].CLOSE_PRICE - response.data.data.lstDate6[j].PREV_CLOSE) / (response.data.data.lstDate6[j].PREV_CLOSE * 0.01)).toFixed(2);
+
+                    result.d18 = parseFloat((response.data.data.lstDate7[j].CLOSE_PRICE - response.data.data.lstDate7[j].PREV_CLOSE) / (response.data.data.lstDate7[j].PREV_CLOSE * 0.01)).toFixed(2);
+
+                    $scope.resultset.push(result);
+
+                    var result = {
+                        Name: "",
+                        Ex_date: "",
+                        Purpose: "",
+                        top20: "",
+                        d1: "",
+                        d2: "",
+                        d3: "",
+                        d4: "",
+                        d5: "",
+                        d6: "",
+                        d7: "",
+                        d8: "",
+                        d9: "",
+                        d10: "",
+                        d11: "",
+                        d12: "",
+                        d13: "",
+                        d14: "",
+                        d15: "",
+                        d16: "",
+                        d17: "",
+                        d18: "",
+                        d19: "",
+                        d20: "",
+                        d21: "",
+                        d22: "",
+                        set: 'true'
+
+                    }
+
+                    result.Name = response.data.data.lstDate1[j].SECURITY.substring(0, 8);
+                    result.d1 = response.data.data.lstDate1[j].LO_52_WK;
+
+                    result.d2 = response.data.data.lstDate1[j].CLOSE_PRICE;
+                    result.d3 = response.data.data.lstDate1[j].NET_TRDVAL;
+                    result.d4 = response.data.data.lstDate1[j].TRADES;
+
+                    result.d5 = response.data.data.lstDate2[j].CLOSE_PRICE;
+                    result.d6 = response.data.data.lstDate2[j].NET_TRDVAL;
+                    result.d7 = response.data.data.lstDate2[j].TRADES;
+
+                    result.d8 = response.data.data.lstDate3[j].CLOSE_PRICE;
+                    result.d9 = response.data.data.lstDate3[j].NET_TRDVAL;
+                    result.d10 = response.data.data.lstDate3[j].TRADES;
+
+                    result.d11 = response.data.data.lstDate4[j].CLOSE_PRICE;
+                    result.d12 = response.data.data.lstDate4[j].NET_TRDVAL;
+                    result.d13 = response.data.data.lstDate4[j].TRADES;
+
+                    result.d14 = response.data.data.lstDate5[j].CLOSE_PRICE;
+                    result.d15 = response.data.data.lstDate5[j].NET_TRDVAL;
+                    result.d16 = response.data.data.lstDate5[j].TRADES;
+
+                    result.d17 = response.data.data.lstDate6[j].CLOSE_PRICE;
+
+                    result.d18 = response.data.data.lstDate7[j].CLOSE_PRICE;
+
+                    $scope.resultset.push(result);
+
+                    $scope.bindCandle(response.data.data.lstDate0[0].SYMBOL);
+
+                    $scope.loading = false;
+                }
+            }
+            else
             {
-
-                var result = {
-                    Name: "",
-                    Ex_date: "",
-                    Purpose: "",
-                    top20: "",
-                    d1: "",
-                    d2: "",
-                    d3: "",
-                    d4: "",
-                    d5: "",
-                    d6: "",
-                    d7: "",
-                    d8: "",
-                    d9: "",
-                    d10: "",
-                    d11: "",
-                    d12: "",
-                    d13: "",
-                    d14: "",
-                    d15: "",
-                    d16: "",
-                    d17: "",
-                    d18: "",
-                    d19: "",
-                    d20: "",
-                    d21: "",
-                    d22: "",
-                    set:'false'
-                }
-
-
-                             
-
-                result.Name = response.data.data.lstDate1[j].SYMBOL;
-                result.d1 = response.data.data.lstDate1[j].HI_52_WK;
-                result.Ex_date = response.data.data.lstDate1[j].Ex_date;
-                result.Purpose = response.data.data.lstDate1[j].Purpose;
-                result.top20 = parseFloat(response.data.data.lstDate1[j].Top_Avg_20).toFixed(4);
-                result.d2 = parseFloat((response.data.data.lstDate1[j].CLOSE_PRICE - response.data.data.lstDate1[j].PREV_CLOSE) / (response.data.data.lstDate1[j].PREV_CLOSE * 0.01)).toFixed(2);
-                result.d3 = parseFloat((response.data.data.lstDate1[j].NET_TRDVAL - response.data.data.lstDate2[j].NET_TRDVAL) / (response.data.data.lstDate2[j].NET_TRDVAL * 0.01)).toFixed(2);
-                result.d4 = parseFloat((response.data.data.lstDate1[j].TRADES - response.data.data.lstDate2[j].TRADES) / (response.data.data.lstDate2[j].TRADES * 0.01)).toFixed(2);
-
-
-                result.d5 = parseFloat((response.data.data.lstDate2[j].CLOSE_PRICE - response.data.data.lstDate2[j].PREV_CLOSE) / (response.data.data.lstDate2[j].PREV_CLOSE * 0.01)).toFixed(2);
-                result.d6 = parseFloat((response.data.data.lstDate2[j].NET_TRDVAL - response.data.data.lstDate3[j].NET_TRDVAL) / (response.data.data.lstDate3[j].NET_TRDVAL * 0.01)).toFixed(2);
-                result.d7 = parseFloat((response.data.data.lstDate2[j].TRADES - response.data.data.lstDate3[j].TRADES) / (response.data.data.lstDate3[j].TRADES * 0.01)).toFixed(2);
-
-                result.d8 = parseFloat((response.data.data.lstDate3[j].CLOSE_PRICE - response.data.data.lstDate3[j].PREV_CLOSE) / (response.data.data.lstDate3[j].PREV_CLOSE * 0.01)).toFixed(2);
-                result.d9 = parseFloat((response.data.data.lstDate3[j].NET_TRDVAL - response.data.data.lstDate4[j].NET_TRDVAL) / (response.data.data.lstDate4[j].NET_TRDVAL * 0.01)).toFixed(2);
-                result.d10 = parseFloat((response.data.data.lstDate3[j].TRADES - response.data.data.lstDate4[j].TRADES) / (response.data.data.lstDate4[j].TRADES * 0.01)).toFixed(2);
-
-                result.d11 = parseFloat((response.data.data.lstDate4[j].CLOSE_PRICE - response.data.data.lstDate4[j].PREV_CLOSE) / (response.data.data.lstDate4[j].PREV_CLOSE * 0.01)).toFixed(2);
-                result.d12 = parseFloat((response.data.data.lstDate4[j].NET_TRDVAL - response.data.data.lstDate5[j].NET_TRDVAL) / (response.data.data.lstDate5[j].NET_TRDVAL * 0.01)).toFixed(2);
-                result.d13 = parseFloat((response.data.data.lstDate4[j].TRADES - response.data.data.lstDate5[j].TRADES) / (response.data.data.lstDate5[j].TRADES * 0.01)).toFixed(2);
-
-                result.d14 = parseFloat((response.data.data.lstDate5[j].CLOSE_PRICE - response.data.data.lstDate5[j].PREV_CLOSE) / (response.data.data.lstDate5[j].PREV_CLOSE * 0.01)).toFixed(2);
-                result.d15 = parseFloat((response.data.data.lstDate5[j].NET_TRDVAL - response.data.data.lstDate0[j].NET_TRDVAL) / (response.data.data.lstDate0[j].NET_TRDVAL * 0.01)).toFixed(2);
-                result.d16 = parseFloat((response.data.data.lstDate5[j].TRADES - response.data.data.lstDate0[j].TRADES) / (response.data.data.lstDate0[j].TRADES * 0.01)).toFixed(2);
-
-                result.d17 = parseFloat((response.data.data.lstDate6[j].CLOSE_PRICE - response.data.data.lstDate6[j].PREV_CLOSE) / (response.data.data.lstDate6[j].PREV_CLOSE * 0.01)).toFixed(2);
-
-                result.d18 = parseFloat((response.data.data.lstDate7[j].CLOSE_PRICE - response.data.data.lstDate7[j].PREV_CLOSE) / (response.data.data.lstDate7[j].PREV_CLOSE * 0.01)).toFixed(2);
-
-                $scope.resultset.push(result);
-
-                var result = {
-                    Name: "",
-                    Ex_date: "",
-                    Purpose: "",
-                    top20:"",
-                    d1: "",
-                    d2: "",
-                    d3: "",
-                    d4: "",
-                    d5: "",
-                    d6: "",
-                    d7: "",
-                    d8: "",
-                    d9: "",
-                    d10: "",
-                    d11: "",
-                    d12: "",
-                    d13: "",
-                    d14: "",
-                    d15: "",
-                    d16: "",
-                    d17: "",
-                    d18: "",
-                    d19: "",
-                    d20: "",
-                    d21: "",
-                    d22: "",
-                    set: 'true'
-                  
-                }
-
-                result.Name = response.data.data.lstDate1[j].SECURITY.substring(0, 8);
-                result.d1 = response.data.data.lstDate1[j].LO_52_WK;
-
-                result.d2 = response.data.data.lstDate1[j].CLOSE_PRICE;
-                result.d3 = response.data.data.lstDate1[j].NET_TRDVAL;
-                result.d4 = response.data.data.lstDate1[j].TRADES;
-
-                result.d5 = response.data.data.lstDate2[j].CLOSE_PRICE;
-                result.d6 = response.data.data.lstDate2[j].NET_TRDVAL;
-                result.d7 = response.data.data.lstDate2[j].TRADES;
-
-                result.d8 = response.data.data.lstDate3[j].CLOSE_PRICE;
-                result.d9 = response.data.data.lstDate3[j].NET_TRDVAL;
-                result.d10 = response.data.data.lstDate3[j].TRADES;
-
-                result.d11 = response.data.data.lstDate4[j].CLOSE_PRICE;
-                result.d12 = response.data.data.lstDate4[j].NET_TRDVAL;
-                result.d13 = response.data.data.lstDate4[j].TRADES;
-
-                result.d14 = response.data.data.lstDate5[j].CLOSE_PRICE;
-                result.d15 = response.data.data.lstDate5[j].NET_TRDVAL;
-                result.d16 = response.data.data.lstDate5[j].TRADES;
-
-                result.d17 = response.data.data.lstDate6[j].CLOSE_PRICE;
-
-                result.d18 = response.data.data.lstDate7[j].CLOSE_PRICE;
-                
-                $scope.resultset.push(result);
-
-                $scope.bindCandle(response.data.data.lstDate0[0].SYMBOL);
-
                 $scope.loading = false;
+                $('#message').html('').prepend('<div class="alert alert-warning" style="text-align:center"> No data available for the Search.</div>').show();
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 10000);
             }
             bindSector(response.data.data.sectorInfo);
              }, function errorCallback(response) {
-
+                
+                     // Handle error here
+                     $scope.loading = false;
+              
         });
     };
 
