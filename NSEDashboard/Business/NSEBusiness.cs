@@ -406,6 +406,46 @@ namespace NSEDashboard.Business
 
         #region FO Contoller
 
+        public List<Candalchart> GetFOTwentyRecord(FoInputModel data)
+        {
+            List<Candalchart> pdData = new List<Candalchart>();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
+            string SqlString = "select * from (SELECT TOP 20  [SYMBOL], [OPEN_PRICE], [HI_PRICE]  ,[LO_PRICE] ,[CLOSE_PRICE] ,[OPEN_Int*] ,TRD_qTY ,[UPLOAD_DATE]  FROM[dbo].foshare where SYMBOL = '"+ data .SYMBOL+ "'  and STR_PRICE=" + data.STR_PRICE + " and opt_type='" + data.OPT_TYPE + "'  and EXP_DATE ='" + data.EXP_DATE + "' order by UPLOAD_DATE desc) T order by UPLOAD_DATE";
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter sda = new SqlDataAdapter(SqlString, conn);
+                DataTable dt = new DataTable();
+                try
+                {
+                    conn.Open();
+                    sda.Fill(dt);
+                }
+                catch (SqlException se)
+                {
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    pdData.Add(new Candalchart
+                    {
+                        open = Convert.ToDouble(row["OPEN_PRICE"].ToString()),
+                        close = Convert.ToDouble(row["CLOSE_PRICE"].ToString()),
+                        high = Convert.ToDouble(row["HI_PRICE"].ToString()),
+                        low = Convert.ToDouble(row["LO_PRICE"].ToString()),
+                        volume = Convert.ToDouble(row["OPEN_Int*"].ToString()),
+                        quantity = Convert.ToDouble(row["TRD_qTY"].ToString()),
+                        date = Convert.ToDateTime(row["UPLOAD_DATE"].ToString()).ToString("MM/dd/yyyy"),
+
+                    });
+
+                }
+            }
+
+            return pdData;
+        }
+
         public FOModelData GetFOData()
         {
             FOModelData lstModel = new FOModelData();

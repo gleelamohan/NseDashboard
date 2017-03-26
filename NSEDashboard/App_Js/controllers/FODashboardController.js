@@ -1,6 +1,49 @@
 ﻿
 app.controller('FODashboard', function ($scope, $http) {
 
+
+    function candleotions() {
+        $scope.options = {
+            chart: {
+                type: 'candlestickBarChart',
+                height: 200,
+                margin: {
+                    top: 20,
+                    right: 20,
+                    bottom: 40,
+                    left: 60
+                },
+                x: function (d) { return d['date']; },
+                y: function (d) { return d['close']; },
+                duration: 100,
+
+                xAxis: {
+                    axisLabel: '',
+                    tickFormat: function (d) {
+                        return d3.time.format('%x')(new Date(d));
+                    },
+                    showMaxMin: false
+                },
+
+                yAxis: {
+                    axisLabel: '',
+                    tickFormat: function (d) {
+                        return 'Rs ' + d3.format(',.1f')(d);
+                    },
+                    showMaxMin: false
+                },
+                zoom: {
+                    enabled: true,
+                    scaleExtent: [1, 10],
+                    useFixedDomain: false,
+                    useNiceScale: false,
+                    horizontalOff: false,
+                    verticalOff: true,
+                    unzoomEventType: 'dblclick.zoom'
+                }
+            }
+        };
+    };
     $scope.data = [{ values: [] }];
 
     $scope.data1 = [
@@ -17,46 +60,84 @@ app.controller('FODashboard', function ($scope, $http) {
        }
     ];
 
-    $scope.options = {
-        chart: {
-            type: 'candlestickBarChart',
-            height: 200,
-            margin: {
-                top: 20,
-                right: 20,
-                bottom: 40,
-                left: 60
-            },
-            x: function (d) { return d['date']; },
-            y: function (d) { return d['close']; },
-            duration: 100,
+    
+    $scope.bindCandle = function (sym) {
 
-            xAxis: {
-                axisLabel: '',
-                tickFormat: function (d) {
-                    return d3.time.format('%x')(new Date(d));
-                },
-                showMaxMin: false
-            },
+            $scope.loading = true;
 
-            yAxis: {
-                axisLabel: '',
-                tickFormat: function (d) {
-                    return 'Rs ' + d3.format(',.1f')(d);
-                },
-                showMaxMin: false
-            },
-            zoom: {
-                enabled: true,
-                scaleExtent: [1, 10],
-                useFixedDomain: false,
-                useNiceScale: false,
-                horizontalOff: false,
-                verticalOff: true,
-                unzoomEventType: 'dblclick.zoom'
+        $http.get('http://localhost/EQDashboard/api/GetFOChart?symbol=' + sym.Symbol + '&expdate='
++ sym.Ex_date + '&opttype=' + sym.Opt + '&strtype=' + sym.StrPrice
+        ).then(function successCallback(response) {
+
+
+
+            $scope.data = [{
+                values: []
+            }];
+            $scope.data1[0].values = [];
+            $scope.data2[0].values = [];
+            //$scope.data[0].values = response.data.data;
+
+            for (var i = 0; i < response.data.data.length; i++) {
+                var c = {
+                    "close": 0,
+                    "open": 0,
+                    "low": 0,
+                    "high": 0,
+                    "date": 0,
+                    "volume": 0
+
+                };
+
+                c.close = response.data.data[i].close;
+                c.open = response.data.data[i].open;
+                c.low = response.data.data[i].low;
+                c.high = response.data.data[i].high;
+                c.date = new Date(response.data.data[i].date);
+                c.volume = response.data.data[i].volume;
+
+                $scope.data[0].values.push(c);
+
+                var cc = {
+                    "label": "",
+                    "value": 0,
+                };
+
+                cc.label = (i + 1);
+                cc.value = parseFloat(response.data.data[i].volume).toFixed(2);
+
+                $scope.data1[0].values.push(cc);
+
+
+                var cc1 = {
+                    "label": "",
+                    "value": 0,
+                }
+
+                cc1.label = (i + 1);
+                cc1.value = parseFloat(response.data.data[i].quantity).toFixed(2);
+
+                $scope.data2[0].values.push(cc1);
             }
-        }
+
+         
+
+
+            $scope.loading = false;
+            candleotions();
+        }, function errorCallback(response) {
+
+            // Handle error here
+            $scope.loading = false;
+
+        }).catch(function (data) {
+            // Handle error here
+            $scope.loading = false;
+        });
+
     };
+
+   
 
     $scope.options1 = {
         chart: {
@@ -144,6 +225,7 @@ app.controller('FODashboard', function ($scope, $http) {
                     result.d1 = response.data.data.lstDate1[j].HI_PRICE;
                     result.Ex_date = response.data.data.lstDate1[j].EXP_DATE;
                     result.StrPrice = response.data.data.lstDate1[j].STR_PRICE;
+                    result.Opt = response.data.data.lstDate1[j].OPT_TYPE;
                    
                     result.d2 = parseFloat((response.data.data.lstDate1[j].CLOSE_PRICE - response.data.data.lstDate2[j].CLOSE_PRICE) / (response.data.data.lstDate2[j].CLOSE_PRICE * 0.01)).toFixed(2);
                     result.d3 = parseFloat((response.data.data.lstDate1[j].OPEN_Int - response.data.data.lstDate2[j].OPEN_Int) / (response.data.data.lstDate2[j].OPEN_Int * 0.01)).toFixed(2);
@@ -228,10 +310,18 @@ app.controller('FODashboard', function ($scope, $http) {
 
                     $scope.resultset.push(result);
 
-                    //$scope.bindCandle(response.data.data.lstDate0[0].SYMBOL);
+                  
 
                     $scope.loading = false;
                 }
+
+                var candlevalues = {
+                    Symbol: response.data.data.lstDate0[0].SYMBOL,
+                    Ex_date: response.data.data.lstDate0[0].EXP_DATE,
+                    StrPrice: response.data.data.lstDate0[0].STR_PRICE,
+                    Opt: response.data.data.lstDate0[0].OPT_TYPE
+                }
+                $scope.bindCandle(candlevalues);
             }
             else {
                 $scope.loading = false;

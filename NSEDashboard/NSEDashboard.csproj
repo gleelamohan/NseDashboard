@@ -212,6 +212,7 @@
     <Compile Include="Controllers\DashboardFOController.cs" />
     <Compile Include="Models\Candalchart.cs" />
     <Compile Include="Models\FOData.cs" />
+    <Compile Include="Models\FoInputModel.cs" />
     <Compile Include="Models\FOModelData.cs" />
     <Compile Include="Services\GetChartController.cs" />
     <Compile Include="Controllers\NSEClientController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Models\PDInputModel.cs" />
     <Compile Include="Models\PDModelData.cs" />
     <Compile Include="Models\UploadData.cs" />
+    <Compile Include="Services\GetFOChartController.cs" />
     <Compile Include="Services\NSEFOController.cs" />
     <Compile Include="Services\NSEUploadController.cs" />
     <Compile Include="Startup.cs" />
