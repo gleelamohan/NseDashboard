@@ -19,4 +19,13 @@ namespace NSEDashboard.Models
         public string cDate2 { get; set; }
 
     }
-}
+
+    public class FOInput
+    {
+        public string name { get; set; }
+        public string index { get; set; }
+        public string date { get; set; }
+        public string type { get; set; }
+    }
+
+    }

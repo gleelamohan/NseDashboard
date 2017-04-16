@@ -166,6 +166,13 @@ app.controller('FODashboard', function ($scope, $http) {
         }
     };
 
+    $scope.param = {
+        name: "NIFTY",
+        index: "",
+        date: "",
+        type: ""
+        
+    }
     function intiilizeCommon() {
 
         //var inputparams = [];
@@ -176,13 +183,14 @@ app.controller('FODashboard', function ($scope, $http) {
         //    $scope.param.name = '%';
         //}
 
-        //var config = {
-        //    params: $scope.param
-        //}
+        var config = {
+            params: $scope.param
+        }
 
         $scope.loading = true;
 
-        $http.get('http://localhost/EQDashboard/api/NSEFO').then(function successCallback(response) {
+        $http.get('http://localhost/EQDashboard/api/NSEFO',
+          config).then(function successCallback(response) {
 
             $scope.lastdate = response.data.data.lastFiveDates;
             if (response.data.data.lstDate1.length > 0) {
@@ -339,8 +347,9 @@ app.controller('FODashboard', function ($scope, $http) {
         });
     };
 
-
-
+    $scope.Apply = function () {
+        intiilizeCommon();
+    };
     intiilizeCommon();
 
 });

@@ -14,9 +14,9 @@ namespace NSEDashboard.Controllers
     {
         NSEBusiness BAL = new NSEBusiness();
         // GET api/<controller>
-        public IHttpActionResult Get()
+        public IHttpActionResult Get([FromUri] FOInput location)
         {
-            var data = BAL.GetFOData();
+            var data = BAL.GetFOData(location);
             return Ok(new { data });
         }
 

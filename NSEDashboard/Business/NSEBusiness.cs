@@ -446,7 +446,7 @@ namespace NSEDashboard.Business
             return pdData;
         }
 
-        public FOModelData GetFOData()
+        public FOModelData GetFOData(FOInput location)
         {
             FOModelData lstModel = new FOModelData();
             lstModel.lastFiveDates = GetLastFOFiveDates();
@@ -454,7 +454,7 @@ namespace NSEDashboard.Business
 
             if (LstDates != null && LstDates.Count > 0)
             {
-                var lstSymbol = getFOData("NIFTY", LstDates[0]);
+                var lstSymbol = getFOData(location, LstDates[0]);
 
                 lstModel.lstDate0 = new List<FOData>();
                 lstModel.lstDate1 = new List<FOData>();
@@ -523,13 +523,16 @@ namespace NSEDashboard.Business
             return FOData;
         }
 
-        private DataTable getFOData(string Symbol,string uploaddate)
+        private DataTable getFOData(FOInput Symbol,string uploaddate)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
 
-            string SqlString = "SELECT DISTINCT SYMBOL,STR_PRICE,OPT_TYPE FROM FOSHARE WHERE SYMBOL='"+ Symbol + "' and  upload_date='" + uploaddate + "'";
+            string SqlString = "SELECT DISTINCT SYMBOL,STR_PRICE,OPT_TYPE FROM FOSHARE WHERE ";
 
-            
+            SqlString += "SYMBOL like '" + Symbol.name + "%' and upload_date='" + uploaddate + "' ";
+
+            if(Symbol.index != "" && Symbol.index != null)
+                SqlString += "and STR_PRICE =" + Symbol.index ; 
 
             using (var conn = new SqlConnection(connectionString))
             {
