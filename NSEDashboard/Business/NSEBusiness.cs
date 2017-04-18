@@ -465,12 +465,12 @@ namespace NSEDashboard.Business
             
                 foreach (DataRow row in lstSymbol.Rows)
                 {
-                    lstModel.lstDate1.Add(getFODate(row["SYMBOL"].ToString(), LstDates[0],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
-                    lstModel.lstDate2.Add(getFODate(row["SYMBOL"].ToString(), LstDates[1],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
-                    lstModel.lstDate3.Add(getFODate(row["SYMBOL"].ToString(), LstDates[2],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
-                    lstModel.lstDate4.Add(getFODate(row["SYMBOL"].ToString(), LstDates[3],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
-                    lstModel.lstDate5.Add(getFODate(row["SYMBOL"].ToString(), LstDates[4],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
-                    lstModel.lstDate0.Add(getFODate(row["SYMBOL"].ToString(), LstDates[5],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString()));
+                    getFODate(lstModel.lstDate1,row["SYMBOL"].ToString(), LstDates[0],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
+                    getFODate(lstModel.lstDate2,row["SYMBOL"].ToString(), LstDates[1],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
+                    getFODate(lstModel.lstDate3,row["SYMBOL"].ToString(), LstDates[2],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
+                    getFODate(lstModel.lstDate4,row["SYMBOL"].ToString(), LstDates[3],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
+                    getFODate(lstModel.lstDate5,row["SYMBOL"].ToString(), LstDates[4],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
+                    getFODate(lstModel.lstDate0,row["SYMBOL"].ToString(), LstDates[5],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
                     
                 }               
             }
@@ -478,10 +478,10 @@ namespace NSEDashboard.Business
             return lstModel;
         }
 
-        private FOData getFODate(string Symbol, string dte,string sp, string opt)
+        private List<FOData> getFODate(List<FOData> lstFo ,string Symbol, string dte,string sp, string opt)
         {
-            FOData FOData = new FOData();
-
+            
+           
             string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
             string SqlString = "SELECT * FROM FOSHARE where SYMBOL LIKE '" + Symbol + "' and OPT_TYPE='"+opt+"' and STR_PRICE='" + sp+"' and upload_date = '" + Convert.ToDateTime(dte) + "' ";
 
@@ -500,7 +500,7 @@ namespace NSEDashboard.Business
 
                 foreach (DataRow row in dt.Rows)
                 {
-                   
+                    FOData FOData = new FOData();
                     FOData.EXP_DATE = row["EXP_DATE"].ToString();
                     FOData.SYMBOL = row["SYMBOL"].ToString();
                     FOData.OPT_TYPE = row["OPT_TYPE"].ToString();
@@ -514,13 +514,13 @@ namespace NSEDashboard.Business
                     FOData.TRD_QTY = Convert.ToDouble(row["TRD_QTY"].ToString());
                     FOData.NO_OF_CONT = Convert.ToDouble(row["NO_OF_CONT"].ToString());
                     FOData.NO_OF_TRADE = Convert.ToDouble(row["NO_OF_TRADE"].ToString());
-                    FOData.PR_VA = Convert.ToDouble(row["PR_VAL"].ToString());                
-
+                    FOData.PR_VA = Convert.ToDouble(row["PR_VAL"].ToString());
+                    lstFo.Add(FOData);
 
                 }
             }
 
-            return FOData;
+            return lstFo;
         }
 
         private DataTable getFOData(FOInput Symbol,string uploaddate)
@@ -532,7 +532,13 @@ namespace NSEDashboard.Business
             SqlString += "SYMBOL like '" + Symbol.name + "%' and upload_date='" + uploaddate + "' ";
 
             if(Symbol.index != "" && Symbol.index != null)
-                SqlString += "and STR_PRICE =" + Symbol.index ; 
+                SqlString += "and STR_PRICE =" + Symbol.index ;
+
+            if (Symbol.type != "" && Symbol.type != null)
+                SqlString += " and OPT_TYPE =" + Symbol.type;
+
+            if (Symbol.date != "" && Symbol.date != null)
+                SqlString += " and EXP_DATE =" + Symbol.date;
 
             using (var conn = new SqlConnection(connectionString))
             {
