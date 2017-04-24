@@ -465,12 +465,12 @@ namespace NSEDashboard.Business
             
                 foreach (DataRow row in lstSymbol.Rows)
                 {
-                    getFODate(lstModel.lstDate1,row["SYMBOL"].ToString(), LstDates[0],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
-                    getFODate(lstModel.lstDate2,row["SYMBOL"].ToString(), LstDates[1],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
-                    getFODate(lstModel.lstDate3,row["SYMBOL"].ToString(), LstDates[2],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
-                    getFODate(lstModel.lstDate4,row["SYMBOL"].ToString(), LstDates[3],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
-                    getFODate(lstModel.lstDate5,row["SYMBOL"].ToString(), LstDates[4],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
-                    getFODate(lstModel.lstDate0,row["SYMBOL"].ToString(), LstDates[5],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString());
+                    getFODate(lstModel.lstDate1,row["SYMBOL"].ToString(), LstDates[0],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString(),location);
+                    getFODate(lstModel.lstDate2,row["SYMBOL"].ToString(), LstDates[1],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString(),location);
+                    getFODate(lstModel.lstDate3,row["SYMBOL"].ToString(), LstDates[2],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString(),location);
+                    getFODate(lstModel.lstDate4,row["SYMBOL"].ToString(), LstDates[3],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString(),location);
+                    getFODate(lstModel.lstDate5,row["SYMBOL"].ToString(), LstDates[4],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString(),location);
+                    getFODate(lstModel.lstDate0,row["SYMBOL"].ToString(), LstDates[5],row["STR_PRICE"].ToString(),row["OPT_TYPE"].ToString(), location);
                     
                 }               
             }
@@ -478,12 +478,15 @@ namespace NSEDashboard.Business
             return lstModel;
         }
 
-        private List<FOData> getFODate(List<FOData> lstFo ,string Symbol, string dte,string sp, string opt)
+        private List<FOData> getFODate(List<FOData> lstFo ,string Symbol, string dte,string sp, string opt, FOInput location)
         {
             
            
             string connectionString = ConfigurationManager.ConnectionStrings["NseConfig"].ConnectionString;
-            string SqlString = "SELECT * FROM FOSHARE where SYMBOL LIKE '" + Symbol + "' and OPT_TYPE='"+opt+"' and STR_PRICE='" + sp+"' and upload_date = '" + Convert.ToDateTime(dte) + "' ";
+            string SqlString = "SELECT * FROM FOSHARE where SYMBOL LIKE '" + Symbol + "' and OPT_TYPE='"+opt+"' and STR_PRICE='" + sp+"' and upload_date = '" + Convert.ToDateTime(dte) + "' " ;
+
+            if (location.date != null)
+                SqlString += "  and EXP_DATE='"+ location.date +"'";
 
             using (var conn = new SqlConnection(connectionString))
             {
