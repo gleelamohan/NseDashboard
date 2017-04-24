@@ -168,7 +168,7 @@ app.controller('FODashboard', function ($scope, $http) {
 
     $scope.param = {
         name: "NIFTY",
-        index: "",
+        index: "9000",
         date: "",
         type: ""
         
