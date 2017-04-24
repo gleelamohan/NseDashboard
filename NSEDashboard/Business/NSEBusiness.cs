@@ -529,16 +529,16 @@ namespace NSEDashboard.Business
 
             string SqlString = "SELECT DISTINCT SYMBOL,STR_PRICE,OPT_TYPE FROM FOSHARE WHERE ";
 
-            SqlString += "SYMBOL like '" + Symbol.name + "%' and upload_date='" + uploaddate + "' ";
+            SqlString += "SYMBOL like '" + Symbol.name + "%'";
 
             if(Symbol.index != "" && Symbol.index != null)
                 SqlString += "and STR_PRICE =" + Symbol.index ;
 
             if (Symbol.type != "" && Symbol.type != null)
-                SqlString += " and OPT_TYPE =" + Symbol.type;
+                SqlString += " and OPT_TYPE ='" + Symbol.type + "'";
 
             if (Symbol.date != "" && Symbol.date != null)
-                SqlString += " and EXP_DATE =" + Symbol.date;
+                SqlString += " and EXP_DATE ='" + Symbol.date +"'";
 
             using (var conn = new SqlConnection(connectionString))
             {
