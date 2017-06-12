@@ -59,7 +59,6 @@ app.controller('FODashboard', function ($scope, $http) {
            values: []
        }
     ];
-
     
     $scope.bindCandle = function (sym) {
 
@@ -137,8 +136,6 @@ app.controller('FODashboard', function ($scope, $http) {
 
     };
 
-   
-
     $scope.options1 = {
         chart: {
             type: 'discreteBarChart',
@@ -173,6 +170,7 @@ app.controller('FODashboard', function ($scope, $http) {
         type: ""
         
     }
+
     function intiilizeCommon() {
 
         //var inputparams = [];
@@ -223,11 +221,9 @@ app.controller('FODashboard', function ($scope, $http) {
                         d20: "",
                         d21: "",
                         d22: "",
-                        set: 'false'
+                        set: 'false',
+                        Trd_Qty:''
                     }
-
-
-
 
                     result.Symbol = response.data.data.lstDate1[j].SYMBOL;
                     result.d1 = response.data.data.lstDate1[j].HI_PRICE;
@@ -237,25 +233,30 @@ app.controller('FODashboard', function ($scope, $http) {
                    
                     result.d2 = parseFloat((response.data.data.lstDate1[j].CLOSE_PRICE - response.data.data.lstDate2[j].CLOSE_PRICE) / (response.data.data.lstDate2[j].CLOSE_PRICE * 0.01)).toFixed(2);
                     result.d3 = parseFloat((response.data.data.lstDate1[j].OPEN_Int - response.data.data.lstDate2[j].OPEN_Int) / (response.data.data.lstDate2[j].OPEN_Int * 0.01)).toFixed(2);
-                    result.d4 = parseFloat((response.data.data.lstDate1[j].TRD_QTY - response.data.data.lstDate2[j].TRD_QTY) / (response.data.data.lstDate2[j].TRD_QTY * 0.01)).toFixed(2);
+                    // result.d4 = parseFloat((response.data.data.lstDate1[j].TRD_QTY - response.data.data.lstDate2[j].TRD_QTY) / (response.data.data.lstDate2[j].TRD_QTY * 0.01)).toFixed(2);
+                    result.d4 = parseFloat((response.data.data.lstDate1[j].OPEN_Int * response.data.data.lstDate1[j].CLOSE_PRICE)/1000000).toFixed(2);
 
 
                     result.d5 = parseFloat((response.data.data.lstDate2[j].CLOSE_PRICE - response.data.data.lstDate3[j].CLOSE_PRICE) / (response.data.data.lstDate3[j].CLOSE_PRICE * 0.01)).toFixed(2);
                     result.d6 = parseFloat((response.data.data.lstDate2[j].OPEN_Int - response.data.data.lstDate3[j].OPEN_Int) / (response.data.data.lstDate3[j].OPEN_Int * 0.01)).toFixed(2);
-                    result.d7 = parseFloat((response.data.data.lstDate2[j].TRD_QTY - response.data.data.lstDate3[j].TRD_QTY) / (response.data.data.lstDate3[j].TRD_QTY * 0.01)).toFixed(2);
+                    //result.d7 = parseFloat((response.data.data.lstDate2[j].TRD_QTY - response.data.data.lstDate3[j].TRD_QTY) / (response.data.data.lstDate3[j].TRD_QTY * 0.01)).toFixed(2);
+                    result.d7 = parseFloat((response.data.data.lstDate2[j].OPEN_Int * response.data.data.lstDate2[j].CLOSE_PRICE) / 1000000).toFixed(2);
 
                     result.d8 = parseFloat((response.data.data.lstDate3[j].CLOSE_PRICE - response.data.data.lstDate4[j].CLOSE_PRICE) / (response.data.data.lstDate4[j].CLOSE_PRICE * 0.01)).toFixed(2);
                     result.d9 = parseFloat((response.data.data.lstDate3[j].OPEN_Int - response.data.data.lstDate4[j].OPEN_Int) / (response.data.data.lstDate4[j].OPEN_Int * 0.01)).toFixed(2);
-                    result.d10 = parseFloat((response.data.data.lstDate3[j].TRD_QTY - response.data.data.lstDate4[j].TRD_QTY) / (response.data.data.lstDate4[j].TRD_QTY * 0.01)).toFixed(2);
+                    //result.d10 = parseFloat((response.data.data.lstDate3[j].TRD_QTY - response.data.data.lstDate4[j].TRD_QTY) / (response.data.data.lstDate4[j].TRD_QTY * 0.01)).toFixed(2);
+                    result.d10 = parseFloat((response.data.data.lstDate3[j].OPEN_Int * response.data.data.lstDate3[j].CLOSE_PRICE) / 1000000).toFixed(2);
 
                     result.d11 = parseFloat((response.data.data.lstDate4[j].CLOSE_PRICE - response.data.data.lstDate4[j].CLOSE_PRICE) / (response.data.data.lstDate4[j].CLOSE_PRICE * 0.01)).toFixed(2);
                     result.d12 = parseFloat((response.data.data.lstDate4[j].OPEN_Int - response.data.data.lstDate5[j].OPEN_Int) / (response.data.data.lstDate5[j].OPEN_Int * 0.01)).toFixed(2);
-                    result.d13 = parseFloat((response.data.data.lstDate4[j].TRD_QTY - response.data.data.lstDate5[j].TRD_QTY) / (response.data.data.lstDate5[j].TRD_QTY * 0.01)).toFixed(2);
+                    //result.d13 = parseFloat((response.data.data.lstDate4[j].TRD_QTY - response.data.data.lstDate5[j].TRD_QTY) / (response.data.data.lstDate5[j].TRD_QTY * 0.01)).toFixed(2);
+                    result.d13 = parseFloat((response.data.data.lstDate4[j].OPEN_Int * response.data.data.lstDate4[j].CLOSE_PRICE) / 1000000).toFixed(2);
 
                     result.d14 = parseFloat((response.data.data.lstDate5[j].CLOSE_PRICE - response.data.data.lstDate5[j].CLOSE_PRICE) / (response.data.data.lstDate5[j].CLOSE_PRICE * 0.01)).toFixed(2);
                     result.d15 = parseFloat((response.data.data.lstDate5[j].OPEN_Int - response.data.data.lstDate0[j].OPEN_Int) / (response.data.data.lstDate0[j].OPEN_Int * 0.01)).toFixed(2);
-                    result.d16 = parseFloat((response.data.data.lstDate5[j].TRD_QTY - response.data.data.lstDate0[j].TRD_QTY) / (response.data.data.lstDate0[j].TRD_QTY * 0.01)).toFixed(2);
-
+                    //result.d16 = parseFloat((response.data.data.lstDate5[j].TRD_QTY - response.data.data.lstDate0[j].TRD_QTY) / (response.data.data.lstDate0[j].TRD_QTY * 0.01)).toFixed(2);
+                    result.d16 = parseFloat((response.data.data.lstDate5[j].OPEN_Int * response.data.data.lstDate5[j].CLOSE_PRICE) / 1000000).toFixed(2);
+                    
                    
                     $scope.resultset.push(result);
 
@@ -287,7 +288,6 @@ app.controller('FODashboard', function ($scope, $http) {
                         d21: "",
                         d22: "",
                         set: 'true'
-
                     }
 
                     result.Symbol = response.data.data.lstDate1[j].SYMBOL.substring(0, 8);
@@ -297,24 +297,25 @@ app.controller('FODashboard', function ($scope, $http) {
 
                     result.d2 = response.data.data.lstDate1[j].CLOSE_PRICE;
                     result.d3 = response.data.data.lstDate1[j].OPEN_Int;
-                    result.d4 = response.data.data.lstDate1[j].TRD_QTY;
+                    result.d4 = response.data.data.lstDate1[j].NO_OF_CONT;
+                  //  result.No_Cont1 = response.data.data.lstDate1[j].TRD_QTY;
 
                     result.d5 = response.data.data.lstDate2[j].CLOSE_PRICE;
                     result.d6 = response.data.data.lstDate2[j].OPEN_Int;
-                    result.d7 = response.data.data.lstDate2[j].TRD_QTY;
+                    result.d7 = response.data.data.lstDate2[j].NO_OF_CONT;
 
                     result.d8 = response.data.data.lstDate3[j].CLOSE_PRICE;
                     result.d9 = response.data.data.lstDate3[j].OPEN_Int;
-                    result.d10 = response.data.data.lstDate3[j].TRD_QTY;
+                    result.d10 = response.data.data.lstDate3[j].NO_OF_CONT;
 
                     result.d11 = response.data.data.lstDate4[j].CLOSE_PRICE;
                     result.d12 = response.data.data.lstDate4[j].OPEN_Int;
-                    result.d13 = response.data.data.lstDate4[j].TRD_QTY;
+                    result.d13 = response.data.data.lstDate4[j].NO_OF_CONT;
 
                     result.d14 = response.data.data.lstDate5[j].CLOSE_PRICE;
                     result.d15 = response.data.data.lstDate5[j].OPEN_Int;
-                    result.d16 = response.data.data.lstDate5[j].TRD_QTY;
-
+                    result.d16 = response.data.data.lstDate5[j].NO_OF_CONT;
+                //    result.No_Cont = response.data.data.lstDate5[j].NO_OF_CONT;
 
                     $scope.resultset.push(result);
 
